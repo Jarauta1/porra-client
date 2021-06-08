@@ -1,25 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
 
+import {useState,useEffect} from "react"
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  let [boton,setBoton] = useState(0)
+
+  useEffect (function(){
+    fetch("http://localhost:3000/usuarios/registro",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({mail:"diegojarautaibanez@gmail.com",nombre:"Diego",password: "12345"}),
+      }).then((res)=>res.json()).then((res)=>{
+        console.log(res)
+      })
+      
+  },[boton])
+
+  function cambio() {
+    setBoton(boton+1)
+  }
+
+  return (<>
+     <button  onClick={cambio}>Dale</button>
+  </>);
 }
 
 export default App;
