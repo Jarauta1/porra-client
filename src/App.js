@@ -8,7 +8,7 @@ function App() {
   let [boton,setBoton] = useState(0)
 
   useEffect (function(){
-    fetch("http://localhost:3000/usuarios/registro",{
+    fetch("https://porra-server.herokuapp.com/usuarios/registro",{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
